@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -17,17 +19,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main>
-          <nav>
-            <Link href="/">
-              Home
-            </Link>
-            <Link href="/resume">
-              Resume
-            </Link>
+      <body className={nunito.className}>
+        <main className="bg-gradient-to-b from-prussian-blue from-30%  to-midnight-green">
+          <nav className="bg-indigo-blue py-2 shadow-dark-mild">
+            <div className="flex flex-col mx-auto max-w-[90%]">
+              <ul className="list-style-none me-auto flex flex-col ps-0 lg:flex-row">
+                <li className="mb-4 lg:mb-0 lg:pe-2 px-2 border-2 border-green-100">
+                  <Link href="/">Home</Link>
+                </li>
+                <li className="mb-4 lg:mb-0 lg:pe-2 px-2">
+                  <Link href="/resume">Resume</Link>
+                </li>
+              </ul>
+            </div>
           </nav>
-          {children}
+          <div className="">
+            <div className="flex flex-col mx-auto max-w-[80%] mt-4">
+              {children}
+            </div>
+          </div>
         </main>
       </body>
     </html>

@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import { GetStaticProps } from "next";
+import "../globals.css";
 
 interface BasicInfo {
   name: string;
@@ -18,19 +19,18 @@ interface SkillsInfo {
 }
 
 interface ExperienceInfo {
-  [name: string]: {
-    startDate: string;
-    endDate: string;
-    grade: Record<
-      string,
-      {
-        clientName: string;
-        duration: string;
-        highlights: string[];
-      }
-    >;
+  name: string
+  startDate: string;
+  endDate: string;
+  grade: Record<
+    string,
+    {
+      clientName: string;
+      duration: string;
+      highlights: string[];
+    }
+  >;
   };
-}
 
 interface EducationInfo {
   degree: string;
@@ -68,10 +68,10 @@ export default async function ResumePage() {
     return <div>Loading...</div>;
   }
   return (
-    <div>
-      <h1>Resume</h1>
+    <div className="flex-row text-justify">
+      <h1 className="text-2xl">Resume</h1>
       <div>
-        <h2>Basic Information</h2>
+        <h2 className="text-xl text-">Basic Information</h2>
         <ul>
           <li>Name: {resumeData.basic.name}</li>
           <li>Designation: {resumeData.basic.designation}</li>
@@ -83,32 +83,30 @@ export default async function ResumePage() {
         </ul>
       </div>
       <div>
-        <h2>Skills</h2>
-        <h3>Technical Skills:</h3>
-        <ul>
+        <h2 className="text-xl text-emerald-500">Skills</h2>
+        <h3 className="text-lg text-indigo-500">Technical Skills:</h3>
+        <div className="grid grid-flow-row-dense grid-cols-4">
           {resumeData.skills.technical.map((skill, index) => (
-            <li key={index}>{skill}</li>
+            <div key={index} className="flex justify-center p-1">
+              <div className="border rounded-full p-2">{skill}</div>
+            </div>
           ))}
-        </ul>
-        <h3>Soft Skills:</h3>
-        <ul>
+        </div>
+        <h3 className="text-lg text-indigo-500">Soft Skills:</h3>
+        <div className="grid grid-flow-row-dense grid-cols-4">
           {resumeData.skills.soft.map((skill, index) => (
-            <li key={index}>{skill}</li>
+            <div key={index} className="flex justify-center p-1">
+              <div className="border rounded-full p-2">{skill}</div>
+            </div>
           ))}
-        </ul>
-        <h3>Languages:</h3>
-        <ul>
-          {resumeData.skills.languages.map((language, index) => (
-            <li key={index}>{language}</li>
-          ))}
-        </ul>
+        </div>
       </div>
       <div>
-        <h2>Experience</h2>
-        {Object.entries(resumeData.experience).map(
-          ([key, experience], index) => (
+        <h2 className="text-xl text-emerald-500">Experience</h2>
+        {resumeData.experience.map(
+          (experience, index) => (
             <div key={index}>
-              <h3>{key}</h3>
+              <h3>{experience.name}</h3>
               {Object.entries(experience.grade).map(([role, details]) => {
                 const roleDetails = details as unknown as {
                   clientName: string;
@@ -134,7 +132,7 @@ export default async function ResumePage() {
       </div>
 
       <div>
-        <h2>Education</h2>
+        <h2 className="text-xl text-emerald-500">Education</h2>
         {resumeData.education.map((education, index) => (
           <div key={index}>
             <h3>{education.degree}</h3>
@@ -151,7 +149,7 @@ export default async function ResumePage() {
         ))}
       </div>
       <div>
-        <h2>Certifications</h2>
+        <h2 className="text-xl text-emerald-500">Certifications</h2>
         {resumeData.certification.map((certification, index) => (
           <div key={index}>
             <h3>{certification.name}</h3>
@@ -161,7 +159,7 @@ export default async function ResumePage() {
         ))}
       </div>
       <div>
-        <h2>References</h2>
+        <h2 className="text-xl text-emerald-500">References</h2>
         <p>{resumeData.references}</p>
       </div>
     </div>
