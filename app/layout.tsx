@@ -37,7 +37,9 @@ export default function RootLayout({
             </div>
           </div>
           <footer>
-            <div className="flex grow h-24"></div>
+            <div className="flex h-24 justify-center items-end pb-3">
+              <div className="opacity-45">Created with NextJS</div>
+            </div>
           </footer>
         </main>
       </body>
