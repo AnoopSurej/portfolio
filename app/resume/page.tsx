@@ -1,6 +1,14 @@
 import fs from "fs/promises";
 import { GetStaticProps } from "next";
 import "../globals.css";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 interface BasicInfo {
   name: string;
@@ -19,7 +27,7 @@ interface SkillsInfo {
 }
 
 interface ExperienceInfo {
-  name: string
+  name: string;
   startDate: string;
   endDate: string;
   grade: Record<
@@ -30,7 +38,7 @@ interface ExperienceInfo {
       highlights: string[];
     }
   >;
-  };
+}
 
 interface EducationInfo {
   degree: string;
@@ -69,70 +77,90 @@ export default async function ResumePage() {
   }
   return (
     <div className="flex-row text-justify">
-      <h1 className="text-2xl">Resume</h1>
-      <div>
-        <h2 className="text-xl text-">Basic Information</h2>
-        <ul>
-          <li>Name: {resumeData.basic.name}</li>
-          <li>Designation: {resumeData.basic.designation}</li>
-          <li>Number: {resumeData.basic.number}</li>
-          <li>Email: {resumeData.basic.email}</li>
-          <li>Nationality: {resumeData.basic.nationality}</li>
-          <li>LinkedIn: {resumeData.basic.linkedin}</li>
-          <li>Summary: {resumeData.basic.summary}</li>
-        </ul>
-      </div>
-      <div>
-        <h2 className="text-xl text-emerald-500">Skills</h2>
-        <h3 className="text-lg text-indigo-500">Technical Skills:</h3>
-        <div className="grid grid-flow-row-dense grid-cols-4">
-          {resumeData.skills.technical.map((skill, index) => (
-            <div key={index} className="flex justify-center p-1">
-              <div className="border rounded-full p-2">{skill}</div>
-            </div>
-          ))}
-        </div>
-        <h3 className="text-lg text-indigo-500">Soft Skills:</h3>
-        <div className="grid grid-flow-row-dense grid-cols-4">
-          {resumeData.skills.soft.map((skill, index) => (
-            <div key={index} className="flex justify-center p-1">
-              <div className="border rounded-full p-2">{skill}</div>
-            </div>
-          ))}
+      <h1 className="flex flex-row justify-center font-montserrat font-bold text-2xl p-4">
+        Resume
+      </h1>
+      <div className="border rounded-3xl border-columbia-blue border-opacity-20 p-5 my-4">
+        <h2 className="flex flex-row justify-center text-celeste-green font-montserrat font-semibold text-xl mx-2 mb-2">
+          Basic Information
+        </h2>
+        <div className="">
+          <ul>
+            <li>Name: {resumeData.basic.name}</li>
+            <li>Designation: {resumeData.basic.designation}</li>
+            <li>Number: {resumeData.basic.number}</li>
+            <li>Email: {resumeData.basic.email}</li>
+            <li>Nationality: {resumeData.basic.nationality}</li>
+            <li>LinkedIn: {resumeData.basic.linkedin}</li>
+            <li>Summary: {resumeData.basic.summary}</li>
+          </ul>
         </div>
       </div>
-      <div>
-        <h2 className="text-xl text-emerald-500">Experience</h2>
-        {resumeData.experience.map(
-          (experience, index) => (
-            <div key={index}>
-              <h3>{experience.name}</h3>
-              {Object.entries(experience.grade).map(([role, details]) => {
-                const roleDetails = details as unknown as {
-                  clientName: string;
-                  duration: string;
-                  highlights: string[];
-                };
-                return (
-                  <div key={role}>
-                    <h4>{role}</h4>
-                    <p>Client Name: {roleDetails.clientName}</p>
-                    <p>Duration: {roleDetails.duration}</p>
-                    <ul>
-                      {roleDetails.highlights.map((highlight, index) => (
-                        <li key={index}>{highlight}</li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-          )
-        )}
+      <div className="border rounded-3xl border-columbia-blue border-opacity-20 my-4">
+        <h2 className="flex flex-row justify-center text-celeste-green font-montserrat font-semibold text-xl p-3">
+          Skills
+        </h2>
+        <h3 className="flex flex-row justify-center text-lg text-robin-blue pb-3">
+          Technical Skills:
+        </h3>
+        <div className="flex flex-row justify-center mb-4">
+          <div className="grid grid-flow-row-dense grid-cols-4 w-[70%]">
+            {resumeData.skills.technical.map((skill, index) => (
+              <div key={index} className="flex justify-center p-1">
+                <div className="border-2 border-columbia-blue rounded-full p-2">
+                  {skill}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <h3 className="flex flex-row justify-center text-lg text-robin-blue">
+          Soft Skills:
+        </h3>
+        <div className="flex flex-row justify-center mb-4">
+          <div className="grid grid-flow-row-dense grid-cols-4 w-[90%]">
+            {resumeData.skills.soft.map((skill, index) => (
+              <div key={index} className="flex justify-center p-1">
+                <div className="border rounded-full p-2">{skill}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="border rounded-3xl border-columbia-blue border-opacity-20 my-4 p-5">
+        <h2 className="flex flex-row justify-center text-celeste-green font-montserrat font-semibold text-xl p-3">
+          Experience
+        </h2>
+        {resumeData.experience.map((experience, index) => (
+          <div key={index}>
+            <h3>{experience.name}</h3>
+            {Object.entries(experience.grade).map(([role, details]) => {
+              const roleDetails = details as unknown as {
+                clientName: string;
+                duration: string;
+                highlights: string[];
+              };
+              return (
+                <div key={role}>
+                  <h4>{role}</h4>
+                  <p>Client Name: {roleDetails.clientName}</p>
+                  <p>Duration: {roleDetails.duration}</p>
+                  <ul>
+                    {roleDetails.highlights.map((highlight, index) => (
+                      <li key={index}>{highlight}</li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        ))}
       </div>
 
-      <div>
-        <h2 className="text-xl text-emerald-500">Education</h2>
+      <div className="border rounded-3xl border-columbia-blue border-opacity-20 my-4 p-5">
+        <h2 className="flex flex-row justify-center text-celeste-green font-montserrat font-semibold text-xl p-3">
+          Education
+        </h2>
         {resumeData.education.map((education, index) => (
           <div key={index}>
             <h3>{education.degree}</h3>
@@ -140,16 +168,27 @@ export default async function ResumePage() {
             <p>
               Duration: {education.startDate} - {education.endDate}
             </p>
-            <ul>
-              {education.modules.map((module, index) => (
-                <li key={index}>{module}</li>
-              ))}
-            </ul>
+            <h3 className="flex flex-row justify-center text-lg text-robin-blue pb-3">
+              Modules:
+            </h3>
+            <div className="flex flex-row justify-center mb-4">
+              <div className="grid grid-flow-row-dense grid-cols-4 w-[90%]">
+                {education.modules.map((module, index) => (
+                  <div key={index} className="flex justify-center p-1">
+                    <div className="border rounded-full p-2 justify-normal">
+                      {module}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ))}
       </div>
-      <div>
-        <h2 className="text-xl text-emerald-500">Certifications</h2>
+      <div className="border rounded-3xl border-columbia-blue border-opacity-20 my-4 p-5">
+        <h2 className="flex flex-row justify-center font-montserrat font-semibold text-xl text-celeste-green p-3">
+          Certifications
+        </h2>
         {resumeData.certification.map((certification, index) => (
           <div key={index}>
             <h3>{certification.name}</h3>
@@ -159,8 +198,10 @@ export default async function ResumePage() {
         ))}
       </div>
       <div>
-        <h2 className="text-xl text-emerald-500">References</h2>
-        <p>{resumeData.references}</p>
+        <h2 className="flex flex-row justify-center font-montserrat font-semibold text-xl text-celeste-green p-3">
+          References
+        </h2>
+        <p className="flex flex-row justify-center">{resumeData.references}</p>
       </div>
     </div>
   );

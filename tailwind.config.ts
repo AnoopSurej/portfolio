@@ -21,6 +21,11 @@ const config: Config = {
         "aqua-green": "#4cf5b7",
         "celeste-green": "#c5fff3",
         "indigo-blue": "#002B44",
+        "prussian-blue-light": "#042b40",
+        "midnight-green-light": "#033c40",
+      },
+      fontFamily: {
+        "montserrat": ["Montserrat", "sans"],
       },
     },
   },

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Nunito } from "next/font/google";
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
@@ -23,8 +21,8 @@ export default function RootLayout({
         <main className="bg-gradient-to-b from-prussian-blue from-30%  to-midnight-green">
           <nav className="bg-indigo-blue py-2 shadow-dark-mild">
             <div className="flex flex-col mx-auto max-w-[90%]">
-              <ul className="list-style-none me-auto flex flex-col ps-0 lg:flex-row">
-                <li className="mb-4 lg:mb-0 lg:pe-2 px-2 border-2 border-green-100">
+              <ul className="font-montserrat list-style-none me-auto flex flex-col ps-0 lg:flex-row">
+                <li className="mb-4 lg:mb-0 lg:pe-2 px-2">
                   <Link href="/">Home</Link>
                 </li>
                 <li className="mb-4 lg:mb-0 lg:pe-2 px-2">
@@ -38,6 +36,9 @@ export default function RootLayout({
               {children}
             </div>
           </div>
+          <footer>
+            <div className="flex grow h-24"></div>
+          </footer>
         </main>
       </body>
     </html>
