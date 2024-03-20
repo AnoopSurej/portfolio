@@ -128,7 +128,7 @@ export default async function ResumePage() {
         </div>
       </div>
       <div className="border rounded-3xl border-columbia-blue border-opacity-20 my-4">
-        <div className="">
+        <div className="mb-2">
           <h2 className="flex flex-row justify-center text-celeste-green font-montserrat font-semibold text-xl p-3">
             Skills
           </h2>
@@ -136,7 +136,7 @@ export default async function ResumePage() {
             Technical Skills:
           </h3>
           <div className="flex flex-row justify-center mb-4">
-            <div className="grid grid-flow-row-dense grid-cols-4 w-[70%]">
+            <div className="flex flex-wrap justify-center items-center w-[70%]">
               {resumeData.skills.technical.map((skill, index) => (
                 <div key={index} className="flex justify-center p-1">
                   <div className="border-2 border-columbia-blue border-opacity-40 rounded-full p-2">
@@ -146,18 +146,20 @@ export default async function ResumePage() {
               ))}
             </div>
           </div>
-          <h3 className="flex flex-row justify-center text-lg text-robin-blue">
-            Soft Skills:
-          </h3>
-          <div className="flex flex-row justify-center mb-4">
-            <div className="grid grid-flow-row-dense grid-cols-4 w-[70%]">
-              {resumeData.skills.soft.map((skill, index) => (
-                <div key={index} className="flex justify-center p-1">
-                  <div className="border-2 border-celeste-green border-opacity-40 rounded-full p-2">
-                    {skill}
+          <div className="mb-10">
+            <h3 className="flex flex-row justify-center text-lg text-robin-blue">
+              Soft Skills:
+            </h3>
+            <div className="flex flex-row justify-center mb-4">
+              <div className="flex flex-wrap justify-center items-center w-[70%]">
+                {resumeData.skills.soft.map((skill, index) => (
+                  <div key={index} className="flex justify-center p-1">
+                    <div className="border-2 border-celeste-green border-opacity-40 rounded-full p-2">
+                      {skill}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -210,7 +212,7 @@ export default async function ResumePage() {
               Modules:
             </h3>
             <div className="flex flex-row justify-center mb-4">
-              <div className="grid grid-flow-row-dense grid-cols-3">
+              <div className="flex flex-wrap justify-center items-center w-[70%]">
                 {education.modules.map((module, index) => (
                   <div key={index} className="flex flex-row justify-center p-2">
                     <div className="border-2 border-celeste-green border-opacity-40 rounded-full p-3">
