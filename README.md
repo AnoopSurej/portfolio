@@ -16,3 +16,7 @@ Commands:
 
 `npm run dev` - run dev server  
 `npm run test` - run tests
+
+## Author
+
+[Anoop Surej](https://github.com/AnoopSurej)
