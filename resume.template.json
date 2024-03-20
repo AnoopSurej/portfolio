@@ -1,0 +1,51 @@
+{
+  "basic": {
+    "name": "Sample Name",
+    "designation": "Same Designation",
+    "number": "+44 1234 567890",
+    "email": "sample.email@email.com",
+    "nationality": "Sample Nationality",
+    "linkedin": "linked.com/sample",
+    "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu erat arcu. Nullam faucibus luctus ipsum id posuere. Etiam viverra auctor fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam finibus consectetur mollis. Morbi pretium turpis at erat commodo, eget cursus urna cursus. Morbi at augue velit. Cras tempus tempus bibendum. Ut volutpat cursus ligula vel rutrum."
+  },
+  "skills": {
+    "technical": ["Skill 1", "Skill 2", "Skill 3"],
+    "soft": ["Skill 1", "Skill 2", "Skill 3"]
+  },
+  "experience": [
+    {
+      "name": "[obfuscated]",
+      "startDate": "[obfuscated]",
+      "endDate": "[obfuscated]",
+      "grade": {
+        "Grade 1": {
+          "clientName": "[obfuscated]",
+          "duration": "[obfuscated]",
+          "highlights": ["[obfuscated]", "[obfuscated]", "[obfuscated]"]
+        },
+        "Grade 2": {
+          "clientName": "[obfuscated]",
+          "duration": "[obfuscated]",
+          "highlights": ["[obfuscated]"]
+        }
+      }
+    }
+  ],
+  "education": [
+    {
+      "degree": "[obfuscated]",
+      "startDate": "[obfuscated]",
+      "endDate": "[obfuscated]",
+      "university": "[obfuscated]",
+      "modules": ["Module 1", "Module 2", "Module 3"]
+    }
+  ],
+  "certification": [
+    {
+      "name": "[obfuscated]",
+      "date": "[obfuscated]",
+      "issuingBody": "[obfuscated]"
+    }
+  ],
+  "references": "[obfuscated]"
+}

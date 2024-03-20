@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <main className="bg-gradient-to-b from-prussian-blue from-30%  to-midnight-green">
-          <nav className="bg-indigo-blue py-2 shadow-dark-mild">
+          <nav className="bg-transparent py-2 shadow-dark-mild">
             <div className="flex flex-col mx-auto max-w-[90%]">
               <ul className="font-montserrat list-style-none me-auto flex flex-col ps-0 lg:flex-row">
                 <li className="mb-4 lg:mb-0 lg:pe-2 px-2">
