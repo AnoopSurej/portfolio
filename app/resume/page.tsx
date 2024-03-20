@@ -2,6 +2,8 @@ import fs from "fs/promises";
 import { GetStaticProps } from "next";
 import "../globals.css";
 import { Montserrat } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 
 const montserrat = Montserrat({
   weight: ["400", "700"],
@@ -85,15 +87,44 @@ export default async function ResumePage() {
           Basic Information
         </h2>
         <div className="">
-          <ul>
-            <li>Name: {resumeData.basic.name}</li>
-            <li>Designation: {resumeData.basic.designation}</li>
-            <li>Number: {resumeData.basic.number}</li>
-            <li>Email: {resumeData.basic.email}</li>
-            <li>Nationality: {resumeData.basic.nationality}</li>
-            <li>LinkedIn: {resumeData.basic.linkedin}</li>
-            <li>Summary: {resumeData.basic.summary}</li>
-          </ul>
+          <div className="flex justify-center">
+            <div className="flex flex-col w-[35%] justify-start ml-2">
+              <div className="font-montserrat font-bold text-4xl py-1">
+                {resumeData.basic.name}
+              </div>
+              <div className="font-montserrat font-semibold text-md pb-2">
+                {resumeData.basic.designation}
+              </div>
+              <div>Contact:</div>
+              <div>{resumeData.basic.number}</div>
+              <div>{resumeData.basic.email}</div>
+              <div className="flex flex-row ">
+                <Image
+                  src="/linkedin-icon.svg"
+                  height={20}
+                  width={20}
+                  alt={"LinkedIn Icon"}
+                  className="m"
+                />
+                <div>
+                  <a
+                    href="https://linkedin.com/in/anoop-surej/"
+                    target="_blank"
+                  >
+                    {resumeData.basic.linkedin}
+                  </a>
+                </div>
+              </div>
+              <div className="mt-3">
+                Nationality: {resumeData.basic.nationality}
+              </div>
+            </div>
+            <div className="flex max-w-[60%]">
+              <div className="italic text-columbia-blue opacity-45 my-auto">
+                {resumeData.basic.summary}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="border rounded-3xl border-columbia-blue border-opacity-20 my-4">
@@ -108,7 +139,7 @@ export default async function ResumePage() {
             <div className="grid grid-flow-row-dense grid-cols-4 w-[70%]">
               {resumeData.skills.technical.map((skill, index) => (
                 <div key={index} className="flex justify-center p-1">
-                  <div className="border-2 border-columbia-blue rounded-full p-2">
+                  <div className="border-2 border-columbia-blue border-opacity-40 rounded-full p-2">
                     {skill}
                   </div>
                 </div>
@@ -119,10 +150,12 @@ export default async function ResumePage() {
             Soft Skills:
           </h3>
           <div className="flex flex-row justify-center mb-4">
-            <div className="grid grid-flow-row-dense grid-cols-4 w-[90%]">
+            <div className="grid grid-flow-row-dense grid-cols-4 w-[70%]">
               {resumeData.skills.soft.map((skill, index) => (
                 <div key={index} className="flex justify-center p-1">
-                  <div className="border rounded-full p-2">{skill}</div>
+                  <div className="border-2 border-celeste-green border-opacity-40 rounded-full p-2">
+                    {skill}
+                  </div>
                 </div>
               ))}
             </div>
@@ -180,7 +213,9 @@ export default async function ResumePage() {
               <div className="grid grid-flow-row-dense grid-cols-3">
                 {education.modules.map((module, index) => (
                   <div key={index} className="flex flex-row justify-center p-2">
-                    <div className="border-2 border-celeste-green rounded-full p-3">{module}</div>
+                    <div className="border-2 border-celeste-green border-opacity-40 rounded-full p-3">
+                      {module}
+                    </div>
                   </div>
                 ))}
               </div>
