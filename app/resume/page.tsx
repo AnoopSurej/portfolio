@@ -19,6 +19,7 @@ interface BasicInfo {
   email: string;
   nationality: string;
   linkedin: string;
+  github: string;
   summary: string;
 }
 
@@ -56,7 +57,7 @@ interface CertificationInfo {
   issuingBody: string;
 }
 
-interface ResumeData {
+export interface ResumeData {
   basic: BasicInfo;
   skills: SkillsInfo;
   experience: ExperienceInfo[];
@@ -106,12 +107,23 @@ export default async function ResumePage() {
                   alt={"LinkedIn Icon"}
                   className="m"
                 />
-                <div>
-                  <a
-                    href="https://linkedin.com/in/anoop-surej/"
-                    target="_blank"
-                  >
-                    {resumeData.basic.linkedin}
+                <div className="ml-2">
+                  <a href={resumeData.basic.linkedin} target="_blank">
+                    {resumeData.basic.linkedin.split("com").pop()}
+                  </a>
+                </div>
+              </div>
+              <div className="flex flex-row ">
+                <Image
+                  src="/github-icon.svg"
+                  height={20}
+                  width={20}
+                  alt={"GitHub Icon"}
+                  className="m"
+                />
+                <div className="ml-2">
+                  <a href={resumeData.basic.github} target="_blank">
+                    {resumeData.basic.github.split("com").pop()}
                   </a>
                 </div>
               </div>
