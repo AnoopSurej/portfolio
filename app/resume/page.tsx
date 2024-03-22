@@ -1,9 +1,7 @@
 import fs from "fs/promises";
-import { GetStaticProps } from "next";
 import "../globals.css";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
 
 const montserrat = Montserrat({
   weight: ["400", "700"],
@@ -69,7 +67,6 @@ export interface ResumeData {
 export default async function ResumePage() {
   let resumeData: ResumeData | undefined;
   try {
-    console.log(process.cwd());
     const file = await fs.readFile(process.cwd() + "/resume.json", "utf8");
     resumeData = JSON.parse(file);
   } catch (error) {
@@ -79,7 +76,7 @@ export default async function ResumePage() {
     return <div>Loading...</div>;
   }
   return (
-    <div className="flex-row text-justify">
+    <div className="">
       <h1 className="flex flex-row justify-center font-montserrat font-bold text-2xl p-4">
         Resume
       </h1>
@@ -181,27 +178,53 @@ export default async function ResumePage() {
           Experience
         </h2>
         {resumeData.experience.map((experience, index) => (
-          <div key={index}>
-            <h3>{experience.name}</h3>
-            {Object.entries(experience.grade).map(([role, details]) => {
-              const roleDetails = details as unknown as {
-                clientName: string;
-                duration: string;
-                highlights: string[];
-              };
-              return (
-                <div key={role}>
-                  <h4>{role}</h4>
-                  <p>Client Name: {roleDetails.clientName}</p>
-                  <p>Duration: {roleDetails.duration}</p>
-                  <ul>
-                    {roleDetails.highlights.map((highlight, index) => (
-                      <li key={index}>{highlight}</li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
+          <div key={index} className="flex justify-center">
+            <div className="flex flex-col justify-center rounded-lg mt-4 pb-8 w-[70%]">
+              <h4 className="text-xl font-bold">{experience.name}</h4>
+              <h4 className="text-sm italic opacity-40 font-semibold pb-2">
+                {experience.startDate} - {experience.endDate}
+              </h4>
+              <div className="relative px-4">
+                <div className="absolute h-full border border-dashed border-opacity-20 border-secondary"></div>
+
+                {Object.entries(experience.grade).map(([role, details]) => {
+                  const roleDetails = details as unknown as {
+                    clientName: string;
+                    duration: string;
+                    highlights: string[];
+                  };
+                  return (
+                    <div key={role}>
+                      <div className="flex items-start w-full my-6 -ml-1.5">
+                        <div className="w-[5%] z-10">
+                          <div className="w-3.5 h-3.5 bg-robin-blue rounded-full"></div>
+                        </div>
+                        <div className="w-11/12">
+                          <div>
+                            <p className="text-md font-bold">{role}</p>
+                            <p className="text-sm text-columbia-blue">
+                              {roleDetails.clientName}
+                            </p>
+                            <p className="text-sm text-columbia-blue text-opacity-50">
+                              {roleDetails.duration}
+                            </p>
+                            <ul className="list-disc text-justify">
+                              {roleDetails.highlights.map(
+                                (highlight, index) => (
+                                  <li key={index} className="text-sm p-1">
+                                    {highlight}
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         ))}
       </div>
