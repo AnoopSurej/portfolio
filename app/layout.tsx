@@ -18,27 +18,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <main className="bg-gradient-to-b from-prussian-blue from-30%  to-midnight-green">
+        <main className="flex flex-col min-h-screen">
           <nav className="bg-transparent py-2 shadow-dark-mild">
-            <div className="flex flex-col mx-auto max-w-[90%]">
-              <ul className="font-montserrat list-style-none me-auto flex flex-col ps-0 lg:flex-row">
-                <li className="mb-4 lg:mb-0 lg:pe-2 px-2">
+            <div className="flex flex-row mx-auto max-w-[95%] md:max-w-[90%] lg:max-w-[80%]">
+              <div className="font-montserrat list-style-none me-auto flex flex-row ps-0 text-sm md:text-md">
+                <div className="flex-none mb-4 lg:mb-0 lg:pe-2 px-2">
                   <Link href="/">Home</Link>
-                </li>
-                <li className="mb-4 lg:mb-0 lg:pe-2 px-2">
+                </div>
+                <div className="flex-none mb-4 lg:mb-0 lg:pe-2 px-2">
                   <Link href="/resume">Resume</Link>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           </nav>
-          <div className="">
-            <div className="flex flex-col mx-auto max-w-[80%] mt-4">
+          <div className="h-full flex-grow">
+            <div className="flex mx-auto max-w-[95%] mt-4 justify-center md:max-w-[90%] lg:max-w-[80%]">
               {children}
             </div>
           </div>
-          <footer>
+          <footer className="mt-auto">
             <div className="flex h-24 justify-center items-end pb-3">
-              <div className="opacity-45">Created with NextJS</div>
+              <div className="opacity-45 text-sm md:text-md">Created with NextJS + Tailwind</div>
             </div>
           </footer>
         </main>
